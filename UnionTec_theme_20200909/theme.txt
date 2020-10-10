@@ -1,0 +1,27 @@
+■課題
+
+U社では社員のOracle資格の取得を奨励していて、定期的に社員の資格取得状況を集計している。
+人事部担当者は外部システムから社員の「資格取得リストファイル（oracle_bronze_certificate_list.txt）」をダウンロードするが
+そのファイルには資格取得日と社員番号の２項目だけあって、社員名がない。
+
+上記の「資格取得リストファイル」と「社員マスターファイル（employee.txt）」を使って、
+社員名を含む「oracle_bronze_certificate_list_name.txt」を作成しなさい。
+
+＜想定処理＞
+1) 社員マスターファイル（employee.txt）を読み込み、社員コード（key）、社員名(Value)をHashMap<String,String>に格納する。
+2) 資格取得リストファイルを一行ずつ読み込み、社員コードを取得し、社員コードをkeyとして上記のHashMapから該当する社員名を取得する。
+3) 資格取得リストファイルで読み込んだ内容に社員名を加えて、「社員名付きの資格取得リストファイル」に出力する。
+
+※カンマ区切りの文字列分割はStringのsplitを使用する。（下記リンク参照）
+
+
+■参考情報＞
+テキストファイルを読む
+https://www.javadrive.jp/start/stream/index1.html
+
+テキストをファイルに書き込む
+https://www.javadrive.jp/start/stream/index4.html
+
+文字列を分割する(split)
+https://www.javadrive.jp/start/string_class/index5.html
+
