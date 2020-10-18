@@ -15,7 +15,7 @@ public class TransitionCalculation {
         List<String> transitionTimeList = Files.readAllLines(Paths.get(transitionTimeFileName));
         List<String> stationList = Files.readAllLines(Paths.get(stationListFileName));
         ArrayList<String> timeArray = new ArrayList<String>();
-        LinkedHashMap<Integer,String> transitionMap=new LinkedHashMap<Integer,String>();
+        LinkedHashMap<Integer, String> transitionMap = new LinkedHashMap<Integer, String> ();
         int startStationTime = 0;
         int endStationTime = 0;
         int innerLoopTime = 0; 
@@ -24,15 +24,16 @@ public class TransitionCalculation {
         for( String transitionTimeData:transitionTimeList){
             String transitionTime[] = transitionTimeData.split(",");
                timeArray.add(transitionTime[1]);
-               transitionMap.put(Integer.parseInt(transitionTime[1]) , transitionTime[0]);
-        }
-        int lastTime = Integer.parseInt(timeArray.get(timeArray.size()-1));      
+               transitionMap.put(Integer.parseInt(transitionTime[1]), transitionTime[0]);
+        }        
         int firstTime = Integer.parseInt(timeArray.get(0));   
-        for( String stationData: stationList) {
+        int lastTime = Integer.parseInt(timeArray.get(timeArray.size()-1));      
+
+        for( String stationData:stationList) {
             String station[] = stationData.split(" ");
             String startStation = station[0].replace("\uFEFF", "");
             String endStation= station[1].replace("\uFEFF", "");
-            for(Map.Entry<Integer,String> transitionList:transitionMap.entrySet()){            
+            for(Map.Entry<Integer, String> transitionList:transitionMap.entrySet()){            
                 if(startStation.equals(transitionList.getValue())){
                    startStationTime = transitionList.getKey();
                 }
@@ -42,11 +43,11 @@ public class TransitionCalculation {
             }      
             if(startStationTime < endStationTime){
                 innerLoopTime = endStationTime - startStationTime;
-                outerLoopTime = (startStationTime+firstTime)+(lastTime+endStationTime);
+                outerLoopTime = (startStationTime + firstTime) + (lastTime + endStationTime);
             }
             else if(startStationTime>endStationTime){
-                innerLoopTime = (startStationTime+lastTime)+(firstTime+endStationTime);
-                outerLoopTime = startStationTime-endStationTime;      
+                innerLoopTime = (startStationTime + lastTime) + (firstTime + endStationTime);
+                outerLoopTime = startStationTime - endStationTime;      
             }
             int shortRideTime = Math.min(innerLoopTime,outerLoopTime); 
             fw.write(startStation + " " + endStation + " " + shortRideTime + "\n");    

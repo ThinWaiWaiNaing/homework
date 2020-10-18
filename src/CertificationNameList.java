@@ -29,7 +29,7 @@ public class CertificationNameList {
         for (Map.Entry<String, String> cf:cerfMap.entrySet()) {
             for (Map.Entry<String, String> emp:empMap.entrySet()) { 
                 if (cf.getValue().equals(emp.getKey())) {
-                    fw.write (cf.getKey() + "," + cf.getValue() + "," + emp.getValue()+"\n");
+                    fw.write(cf.getKey() + "," + cf.getValue() + "," + emp.getValue() + "\n");
                 }                    
             }
         }  

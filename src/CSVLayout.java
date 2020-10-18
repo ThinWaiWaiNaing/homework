@@ -12,7 +12,7 @@ public class CSVLayout {
         String outputFileName = "固定長→CSV変換プログラム//output//労働者名簿_固定長_CSV.txt";
         FileWriter fw = new FileWriter(outputFileName);
         int[] layoutList = new int[10];
-        List<String>  inputLists = Files.readAllLines(Paths.get(inputFileName));
+        List<String> inputLists = Files.readAllLines(Paths.get(inputFileName));
         List<String> fileLayoutList = Files.readAllLines(Paths.get(fileLayoutName));     
 
         for(String fileLayout:fileLayoutList){

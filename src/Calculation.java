@@ -7,21 +7,22 @@ import java.util.Scanner;
 public class Calculation {
     public static void main(String[] args) {
         try {         
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the operation:");
-        BigDecimal calResult = evaluate(scanner.nextLine());
-        System.out.println("Calculation Result:" + calResult.setScale(1, RoundingMode.HALF_UP));
-        scanner.close();        
-        } catch (RuntimeException e) {
-          System.out.println("計算式が正しくないです。");
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter the operation:");
+            BigDecimal calResult = evaluate(scanner.nextLine());
+            System.out.println("Calculation Result:" + calResult.setScale(1, RoundingMode.HALF_UP));
+            scanner.close();        
+        } 
+        catch (RuntimeException e) {
+            System.out.println("計算式が正しくないです。");
         }
     }
 
     private static BigDecimal evaluate(String expresion) {
         BigDecimal result = new BigDecimal(0);
         String operation = "";
-        List<Character> openBrackets = new ArrayList<Character>();
-        List<Character> closeBrackets = new ArrayList<Character>();
+        List <Character> openBrackets = new ArrayList<Character>();
+        List <Character> closeBrackets = new ArrayList<Character>();
         StringBuilder innerInput =new StringBuilder();
         String firstVal = "";
         String secondVal = "";
@@ -40,7 +41,7 @@ public class Calculation {
                             if(firstVal.equals("")) {
                                 firstVal = result.toString();
                             }
-                            result = calculateWithOperation(operation,new BigDecimal(secondVal), new BigDecimal(firstVal));
+                            result = calculateWithOperation(operation, new BigDecimal(secondVal), new BigDecimal(firstVal));
                         }
                         continue;
                     }
@@ -57,7 +58,7 @@ public class Calculation {
                 openBrackets.add(inputChar);
                 continue;
             }
-            if(inputChar ==')') {
+            if(inputChar == ')') {
                 closeBrackets.add(inputChar);
                 if(openBrackets.size() == closeBrackets.size()) {
                     openBrackets.clear();
@@ -67,7 +68,7 @@ public class Calculation {
                         firstVal = result.toString();
                     }
                     if(firstVal != "" && operation != "") {
-                        result = calculateWithOperation(operation,result, new BigDecimal(firstVal));
+                        result = calculateWithOperation(operation, result, new BigDecimal(firstVal));
                     }
                     innerInput.setLength(0);
                 }
